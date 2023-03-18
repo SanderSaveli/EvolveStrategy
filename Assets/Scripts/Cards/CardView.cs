@@ -62,9 +62,9 @@ public class CardView
         {
             description += ("+" + data.defenseBonus + " Defense,\n");
         }
-        if (data.walckSpeedBonus != 0)
+        if (data.walkSpeedBonus != 0)
         {
-            description += ("+" + data.walckSpeedBonus * 100 + "% Walck speed,\n");
+            description += ("+" + data.walkSpeedBonus * 100 + "% Walck speed,\n");
         }
         if (data.spawnSpeedBonus != 0)
         {

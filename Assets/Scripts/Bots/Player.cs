@@ -66,9 +66,9 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
         {
             unit.defense += data.defenseBonus;
         }
-        if (data.walckSpeedBonus != 0)
+        if (data.walkSpeedBonus != 0)
         {
-            unit.walckSpeed += data.walckSpeedBonus;
+            unit.walckSpeed += data.walkSpeedBonus;
         }
         if (data.spawnSpeedBonus != 0)
         {

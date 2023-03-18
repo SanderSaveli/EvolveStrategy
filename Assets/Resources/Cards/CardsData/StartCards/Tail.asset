@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d6d99182ccc044a9db53335259e35b, type: 3}
+  m_Name: Tail
+  m_EditorClassIdentifier: 
+  cardType: 4
+  title: Tail
+  number: 0
+  image: {fileID: 0}
+  cost: 0
+  _attackLevel: 1
+  _defenseLevel: 0
+  _spawnSpeedevel: 0
+  _walkSpeedLevel: 0
+  _swimSpeedTimeLevel: 0
+  _climbSpeedLevel: 0
+  _coldResistanceLevel: 0
+  _heatResistanceLevel: 0
+  _poisonResistanceLevel: 0
+  openCards:
+  - {fileID: 11400000, guid: debb4145a946cdc4e807c80846456cc2, type: 2}
+  - {fileID: 11400000, guid: 52927c6a3f53cf047b49ce56556480c6, type: 2}
+  - {fileID: 11400000, guid: 146d10a617ef53442a2a66890d667ad0, type: 2}

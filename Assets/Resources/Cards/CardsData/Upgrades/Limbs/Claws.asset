@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d6d99182ccc044a9db53335259e35b, type: 3}
+  m_Name: Claws
+  m_EditorClassIdentifier: 
+  cardType: 4
+  title: Claws
+  number: 0
+  image: {fileID: 21300000, guid: 5d0ce2e7d6390ef41b3b80a5cbafa2c1, type: 3}
+  cost: 0
+  _attackLevel: 2
+  _defenseLevel: 0
+  _spawnSpeedevel: 0
+  _walkSpeedLevel: 0
+  _swimSpeedTimeLevel: -1
+  _climbSpeedLevel: 1
+  _coldResistanceLevel: 0
+  _heatResistanceLevel: 0
+  _poisonResistanceLevel: 0
+  openCards:
+  - {fileID: 11400000, guid: 3b6e413f234e3154991de43139e444fa, type: 2}
+  - {fileID: 11400000, guid: 648074a9334dedd429e610bc103ad38d, type: 2}

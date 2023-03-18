@@ -20,7 +20,7 @@ public class RegionPalette : ScriptableObject
                 return walcking;
             case (MoveType.Swimming):
                 return swimming;
-            case (MoveType.Ñlimbing):
+            case (MoveType.Climbing):
                 return climbing;
             default:
                 return walcking;

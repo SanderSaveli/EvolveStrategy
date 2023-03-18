@@ -97,7 +97,7 @@ namespace BattleSystem
                     return DEFAUL_TIME_TO_WALCK / walckSpeed;
                 case (MoveType.Swimming):
                     return DEFAUL_TIME_TO_WALCK / swimSpeed;
-                case (MoveType.Ñlimbing):
+                case (MoveType.Climbing):
                     return DEFAUL_TIME_TO_WALCK / climbSpeed;
                 default:
                     return DEFAUL_TIME_TO_WALCK / walckSpeed;

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d6d99182ccc044a9db53335259e35b, type: 3}
+  m_Name: Increased calcium
+  m_EditorClassIdentifier: 
+  cardType: 1
+  title: Increased calcium
+  number: 0
+  image: {fileID: 0}
+  cost: 0
+  _attackLevel: 0
+  _defenseLevel: 1
+  _spawnSpeedevel: 0
+  _walkSpeedLevel: 0
+  _swimSpeedTimeLevel: 0
+  _climbSpeedLevel: 0
+  _coldResistanceLevel: 1
+  _heatResistanceLevel: 1
+  _poisonResistanceLevel: 0
+  openCards:
+  - {fileID: 11400000, guid: 917ee291203e6a54586533caa69c737f, type: 2}
+  - {fileID: 11400000, guid: 89af193b93e3a4246b7563ca364a6219, type: 2}
