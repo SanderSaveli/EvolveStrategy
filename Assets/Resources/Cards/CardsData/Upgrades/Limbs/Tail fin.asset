@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Tail fin
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 64
+  image: {fileID: 21300000, guid: 2a987f9fb6b53ed45a039b59285e1c57, type: 3}
+  cost: 80
   _attackLevel: 1
   _defenseLevel: 0
   _spawnSpeedevel: 0

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Small Scales
-  number: 0
+  number: 23
   image: {fileID: 21300000, guid: 94e6ec00c3bab564d8e1376e2d8f60ed, type: 3}
-  cost: 0
+  cost: 70
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

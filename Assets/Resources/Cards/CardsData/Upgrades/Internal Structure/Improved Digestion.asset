@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Improved Digestion
-  number: 0
+  number: 39
   image: {fileID: 21300000, guid: 071f90119483beb4e9bf1e8dd5c5cabd, type: 3}
-  cost: 0
+  cost: 55
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 1

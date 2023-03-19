@@ -1,7 +1,6 @@
 using BattleSystem;
 using CardSystem;
 using EventBusSystem;
-using System.Collections.Generic;
 using TileSystem;
 using UnityEngine;
 
@@ -20,7 +19,9 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
         _nestBuilder = NestBuilder.instance;
     }
     public override void OfferToBuildNest(Region region)
-    {   }
+    {
+        region.ShowNestBuildingViewForPlayer();
+    }
 
     public void RightClick(Vector3 position)
     {   }

@@ -2,12 +2,11 @@ using CardSystem;
 using System.Collections.Generic;
 using UnityEngine;
 using EventBusSystem;
+using System.Linq;
 
 [RequireComponent(typeof(CardShopView))]
 public class CardShop : MonoBehaviour
 {
-    public CardData[] StartCards;
-
     private List<CardData> _avalibleForSell = new();
 
     private List<CardData> _currentCards;
@@ -15,21 +14,26 @@ public class CardShop : MonoBehaviour
     private Bank bank;
     private CardShopView view;
 
-    [SerializeField] private int cardInRoll; 
+    [SerializeField] private int cardInRoll;
+    private const int PRISE_FOR_REROLL = 10;
 
     private void Start()
     {
+        _avalibleForSell = Resources.LoadAll<CardData>("Cards/CardsData/StartCards").ToList();
         bank = Bank.instance;
         view = GetComponent<CardShopView>();
         view.OnTryBuyCard += TryByCard;
-        foreach (CardData card in StartCards)
-        {
-            _avalibleForSell.Add(card);
-        }
         RerollCurrentCards();
     }
 
-    public List<CardData> RerollCurrentCards()
+    public void TryRerollForPoints() 
+    {
+        if (bank.TryToBuy(PlayersList.Player, PRISE_FOR_REROLL))
+        {
+            RerollCurrentCards();
+        }
+    }
+    private void RerollCurrentCards()
     {
         List<CardData> notSelectedCards = _avalibleForSell;
         List<CardData> selectedCards = new();
@@ -42,7 +46,6 @@ public class CardShop : MonoBehaviour
         }
         _currentCards = selectedCards;
         view.RefillCards(selectedCards);
-        return selectedCards;
     }
 
     public bool TryByCard(CardData card) 

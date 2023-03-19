@@ -10,7 +10,7 @@ namespace CardSystem
         //на сколько изменять за уровень
         private const int ATTACK_PER_LEVEL = 5; 
         private const int DEFENSE_PER_LEVEL = 5; 
-        private const float SPAWN_PER_LEVEL = 5;
+        private const float SPAWN_PER_LEVEL = 0.25f;
         private const float MOVE_PER_LEVEL = 0.25f;
         private const float RESISTANCE_PER_LEVEL = 0.1f;
         

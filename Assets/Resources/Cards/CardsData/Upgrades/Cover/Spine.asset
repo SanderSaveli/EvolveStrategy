@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Spine
-  number: 0
+  number: 25
   image: {fileID: 21300000, guid: d138351c6c7cf2443b864fe0672f6792, type: 3}
-  cost: 0
+  cost: 125
   _attackLevel: 2
   _defenseLevel: 2
   _spawnSpeedevel: 0

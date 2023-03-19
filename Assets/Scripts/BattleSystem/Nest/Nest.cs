@@ -8,7 +8,7 @@ public class Nest : SimpleSpawner
 
     public Nest(TerrainCell cell) : base(cell)
     {
-        DEFAULT_TIME_TO_SPAWN = 1;
+        DEFAULT_TIME_TO_SPAWN = 1.5f;
     }
 
     protected override void SpawnUnit()

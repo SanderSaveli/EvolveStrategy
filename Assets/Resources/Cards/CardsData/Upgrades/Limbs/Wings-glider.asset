@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Wings-glider
-  number: 0
+  number: 65
   image: {fileID: 21300000, guid: 877f0e507095f904992c7a94fafbdfb7, type: 3}
-  cost: 0
+  cost: 115
   _attackLevel: 0
   _defenseLevel: -1
   _spawnSpeedevel: 0

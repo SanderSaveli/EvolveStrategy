@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Slow metabolism
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 8
+  image: {fileID: 21300000, guid: 4a7eddd7f8820c34c8920aa5281b2485, type: 3}
+  cost: 60
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

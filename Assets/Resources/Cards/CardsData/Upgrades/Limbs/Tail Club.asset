@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Tail Club
-  number: 0
+  number: 63
   image: {fileID: 21300000, guid: 4a8780a516d3fae49ad7c48a125e0ad0, type: 3}
-  cost: 0
+  cost: 100
   _attackLevel: 3
   _defenseLevel: 2
   _spawnSpeedevel: 0

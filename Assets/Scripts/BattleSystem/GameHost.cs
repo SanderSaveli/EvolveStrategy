@@ -7,9 +7,11 @@ public class GameHost : MonoBehaviour, IAcktorDiedHandler
 {
     private Dictionary<PlayersList, GameAcktor> acktiveAcktors = new();
     private List<BattleBot> bots = new();
+    private bool _isGameEnd;
 
     private void Start()
     {
+        EventBus.Subscribe(this);
         TerrainTilemap tilemap = FindObjectOfType<TerrainTilemap>();
         acktiveAcktors.Add(PlayersList.Player, new Player(tilemap));
         acktiveAcktors.Add(PlayersList.None, new NoneAcktor(tilemap));
@@ -37,18 +39,26 @@ public class GameHost : MonoBehaviour, IAcktorDiedHandler
 
     public void AcktorDie(GameAcktor acktor)
     {
-        if(acktor.acktorName == PlayersList.Player) 
+        if (!_isGameEnd) 
         {
-            Debug.Log("You proebal");
-        }
-        else if(acktor.acktorName != PlayersList.None) 
-        {
-            BattleBot bot = acktor as BattleBot;
-            bots.Remove(bot);
-            bot.StopBot();
-            if(bots.Count == 0) 
+            if (acktor.acktorName == PlayersList.Player)
             {
-                Debug.Log("Yra, pobeda!");
+                _isGameEnd = true;
+                EventBus.RaiseEvent<IGameEndHandler>(it => it.PlayerLose());
+            }
+            else if (acktor.acktorName != PlayersList.None)
+            {
+                BattleBot bot = acktor as BattleBot;
+                if (bots.Contains(bot))
+                {
+                    bots.Remove(bot);
+                    bot.StopBot();
+                    if (bots.Count == 0)
+                    {
+                        _isGameEnd = true;
+                        EventBus.RaiseEvent<IGameEndHandler>(it => it.PlayerWin());
+                    }
+                }
             }
         }
     }

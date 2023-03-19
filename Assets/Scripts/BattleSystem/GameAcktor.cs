@@ -12,13 +12,19 @@ public abstract class GameAcktor : ICellChangeOwnerHandler
     protected List<TerrainCell> _myCells = new();
 
     protected TerrainTilemap _terrainTilemap;
-
+    private bool _isAcktivated;
+    
     public GameAcktor(PlayersList acktorName, TerrainTilemap terrainTilemap)
     {
+        _isAcktivated = false;
         this.acktorName = acktorName;
         this.unit = new(this);
         _terrainTilemap = terrainTilemap;
         EventBus.Subscribe(this);
+    }
+    ~GameAcktor()
+    {
+        EventBus.Unsubscribe(this);
     }
 
 
@@ -29,14 +35,15 @@ public abstract class GameAcktor : ICellChangeOwnerHandler
         if (_myCells.Contains(cell) && newOwner != this)
         {
             _myCells.Remove(cell);
+            if (_myCells.Count == 0 && _isAcktivated)
+            {
+                EventBus.RaiseEvent<IAcktorDiedHandler>(it => it.AcktorDie(this));
+            }
         }
-        if (newOwner == this)
+        else if (newOwner == this)
         {
             _myCells.Add(cell);
-        }
-        if (_myCells.Count == 0)
-        {
-            EventBus.RaiseEvent<IAcktorDiedHandler>(it => it.AcktorDie(this));
+            _isAcktivated |= true;
         }
     }
 }

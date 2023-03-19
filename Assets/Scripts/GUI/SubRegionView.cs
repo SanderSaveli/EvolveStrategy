@@ -79,6 +79,7 @@ public class SubRegionView : MonoBehaviour
         {
             SubscribeToAllChangeIvennts(cell);
         }
+        HideGeneralInfo();
     }
     private void OnDisable()
     {
@@ -98,26 +99,26 @@ public class SubRegionView : MonoBehaviour
 
     public void ShowCellsInfo()
     {
-        if (_cells.Count != 0)
-        {
-            foreach (TerrainCell cell in _cells)
-            {
-                cell.ShowView();
-            }
-            HideGeneralInfo();
-        }
+        //if (_cells.Count != 0)
+        //{
+        //    foreach (TerrainCell cell in _cells)
+        //    {
+        //        cell.ShowView();
+        //    }
+        //    HideGeneralInfo();
+        //}
     }
 
     public void HideCellsInfo()
     {
-        if (_cells.Count != 0)
-        {
-            foreach (TerrainCell cell in _cells)
-            {
-                cell.HideView();
-            }
-            ShowGeneralInfo();
-        }
+        //if (_cells.Count != 0)
+        //{
+        //    foreach (TerrainCell cell in _cells)
+        //    {
+        //        cell.HideView();
+        //    }
+        //    ShowGeneralInfo();
+        //}
     }
 
     public void AddCell(TerrainCell cell)
@@ -154,7 +155,7 @@ public class SubRegionView : MonoBehaviour
     private void ShowGeneralInfo()
     {
         _isShowen = true;
-        _faider.FadeInAllView(transform);
+        //_faider.FadeInAllView(transform);
     }
 
     private void UpdateUnitView()

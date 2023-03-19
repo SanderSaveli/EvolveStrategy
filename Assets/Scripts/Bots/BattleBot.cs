@@ -32,7 +32,6 @@ public class BattleBot : GameAcktor
 
     IEnumerator AnalysisSituationAndMakeTurn() 
     {
-        Debug.Log(_myCells.Count);
         while (_myCells.Count > 0) 
         {
             yield return new WaitForSeconds(TimeToOneTurn);

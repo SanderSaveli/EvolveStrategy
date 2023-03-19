@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: LongTail
-  number: 0
+  number: 51
   image: {fileID: 21300000, guid: cd2a60446133bd840a44a97c28fa89c0, type: 3}
-  cost: 0
+  cost: 90
   _attackLevel: 0
   _defenseLevel: -1
   _spawnSpeedevel: 0

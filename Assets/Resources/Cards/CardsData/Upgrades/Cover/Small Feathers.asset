@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Small Feathers
-  number: 0
+  number: 22
   image: {fileID: 21300000, guid: 7a1412a3e4b222c44a378745690cbff0, type: 3}
-  cost: 0
+  cost: 85
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 1

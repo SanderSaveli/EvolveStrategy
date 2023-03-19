@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Forcked fin
-  number: 0
+  number: 49
   image: {fileID: 21300000, guid: e29f7c2fd8884ac4694afc3c47f47f9f, type: 3}
-  cost: 0
+  cost: 105
   _attackLevel: 1
   _defenseLevel: 1
   _spawnSpeedevel: 0

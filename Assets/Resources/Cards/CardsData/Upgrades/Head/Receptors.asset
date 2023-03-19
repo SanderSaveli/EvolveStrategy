@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 2
   title: Receptors
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 31
+  image: {fileID: 21300000, guid: 524f3cf5c1ffb7e478586d45e85f4581, type: 3}
+  cost: 55
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

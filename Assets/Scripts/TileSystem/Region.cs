@@ -4,7 +4,7 @@ using EventBusSystem;
 
 namespace TileSystem
 {
-    public class Region
+    public class Region: IPlayerChoosesNestCellHandler, INestDestroyed
     {
         private List<TerrainCell> _regionCells = new();
 
@@ -12,7 +12,7 @@ namespace TileSystem
 
         private bool isRegionControledOnePlayer;
         private GameObject _regionView;
-        private LineRenderer _regionBoundes;
+        private RegionBorder _regionBoundes;
         private NestBuildView _buildView;
 
         private CellType _cellType;
@@ -34,7 +34,8 @@ namespace TileSystem
                 isNestInRegion |= cell.isNestBuilt;
                 cell.OnCellFilled += FindSubRegionForCell;
             }
-            DrawRegionBoundes();
+            CreateRegionBorders();
+            EventBus.Subscribe(this);
         }
 
         public List<TerrainCell> GetRegionCells() 
@@ -51,39 +52,24 @@ namespace TileSystem
             }
         }
 
-        private void DrawRegionBoundes() 
-        {
-            List<Vector3> vector3s = new BorderMetrics().GetRegionBorder(_regionCells);
-            GameObject go = (GameObject)Object.Instantiate(Resources.Load("ViewElements/RegionBorder"));
-            go.transform.SetParent(_regionView.transform);
-            _regionBoundes = go.GetComponent<LineRenderer>();
-            RegionPalette palette = Resources.Load<RegionPalette>("Palettes/RegionPalette");
-            Color col = palette.GetColor(_cellType.climate);
-            _regionBoundes.startColor = col;
-            _regionBoundes.endColor = col;
-            _regionBoundes.material.shader = palette.GetShader(_cellType.move);
-            _regionBoundes.positionCount = vector3s.Count;
-            _regionBoundes.SetPositions(vector3s.ToArray());
-        }
-
         public void ShowCellsInfo() 
         {
-            foreach (KeyValuePair<PlayersList, SubRegionView> pair in _views)
-            {
-                pair.Value.ShowCellsInfo();
-            }
-            _regionBoundes.enabled = true;
-            isFade = false;
+            //foreach (KeyValuePair<PlayersList, SubRegionView> pair in _views)
+            //{
+            //    pair.Value.ShowCellsInfo();
+            //}
+            _regionBoundes.ShowBorders();
+            //isFade = false;
         }
 
         public void HideCellsInfo() 
         {
-            foreach(KeyValuePair<PlayersList, SubRegionView> pair in _views) 
-            {
-                pair.Value.HideCellsInfo();
-            }
-            _regionBoundes.enabled = false;
-            isFade = true;
+            //foreach(KeyValuePair<PlayersList, SubRegionView> pair in _views) 
+            //{
+            //    //pair.Value.HideCellsInfo();
+            //}
+            _regionBoundes.HideBorders();
+            //isFade = true;
         }
 
 
@@ -121,11 +107,7 @@ namespace TileSystem
             {
                 isRegionControledOnePlayer = true;
                 EventBus.RaiseEvent<IRegionOwnershipStatusChangedHandler>(it => it.RegionControledBySinglePlayer(this, cell.owner));
-                if(cell.owner.acktorName == PlayersList.Player && !isNestInRegion) 
-                {
-                    ShowNestBuildingViewForPlayer();
-                }
-                else 
+                if(!isNestInRegion) 
                 {
                     cell.owner.OfferToBuildNest(this);
                 }
@@ -147,7 +129,7 @@ namespace TileSystem
             }
             return true;
         }
-        private void ShowNestBuildingViewForPlayer()
+        public void ShowNestBuildingViewForPlayer()
         {
             GameObject viewPrefab = (GameObject)Resources.Load("ViewElements/BuildNestIcon");
             GameObject viewObject = Object.Instantiate(viewPrefab, _regionView.transform);
@@ -177,6 +159,34 @@ namespace TileSystem
                 center += cell.transform.position;
             }
             return center / _regionCells.Count;
+        }
+
+        private void CreateRegionBorders()
+        {
+            GameObject go = (GameObject)Object.Instantiate(Resources.Load("ViewElements/RegionBorder"));
+            go.transform.SetParent(_regionView.transform);
+            _regionBoundes = go.GetComponent<RegionBorder>();
+            _regionBoundes.AssignVertices(_regionCells, _cellType);
+        }
+
+        public void StartState(Region region)
+        {
+            if(region == this)
+                _regionBoundes.HiliteBorders(Color.yellow);
+        }
+
+        public void EndState(Region region)
+        {
+            if (region == this)
+                _regionBoundes.EndHiliteBorders();
+        }
+
+        public void OnNestDestroyed(Region region, TerrainCell cell)
+        {
+            if(region== this) 
+            {
+                isNestInRegion = false;
+            }
         }
     }
 }

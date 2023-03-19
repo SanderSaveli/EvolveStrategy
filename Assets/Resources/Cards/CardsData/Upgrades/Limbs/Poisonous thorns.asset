@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Poisonous thorns
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 56
+  image: {fileID: 21300000, guid: fed09ccf2d4ed8a409ad0c620c1956a4, type: 3}
+  cost: 110
   _attackLevel: 3
   _defenseLevel: 0
   _spawnSpeedevel: 0

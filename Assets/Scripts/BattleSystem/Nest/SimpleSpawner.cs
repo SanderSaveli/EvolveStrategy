@@ -6,7 +6,7 @@ public class SimpleSpawner : ICellBased
     private Timer _timer = new();
     protected TerrainCell _cell;
     private Unit _unit;
-    protected float DEFAULT_TIME_TO_SPAWN = 3;
+    protected float DEFAULT_TIME_TO_SPAWN = 1;
     public SimpleSpawner(TerrainCell cell)
     {
         _cell = cell;

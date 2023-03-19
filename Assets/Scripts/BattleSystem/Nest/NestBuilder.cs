@@ -32,7 +32,6 @@ namespace BattleSystem
 
         public bool TryBuildNest(TerrainCell cell)
         {
-            Debug.Log("gg");
             if (_avalibleForNestBuilding.Contains(cell.region))
             {
                 BuildNest(cell);

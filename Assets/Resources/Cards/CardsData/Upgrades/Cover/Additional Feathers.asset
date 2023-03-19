@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Additional Feathers
-  number: 0
+  number: 12
   image: {fileID: 21300000, guid: a0b590300000c4341871e8e93d18d8b3, type: 3}
-  cost: 0
+  cost: 60
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 1

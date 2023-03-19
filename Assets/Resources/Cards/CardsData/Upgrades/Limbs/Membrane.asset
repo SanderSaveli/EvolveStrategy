@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Membrane
-  number: 0
+  number: 52
   image: {fileID: 21300000, guid: 4626ee005ec9c174c9d6224df9aa5488, type: 3}
-  cost: 0
+  cost: 75
   _attackLevel: 1
   _defenseLevel: 0
   _spawnSpeedevel: 0

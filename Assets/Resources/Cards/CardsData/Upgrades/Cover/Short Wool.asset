@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Short Wool
-  number: 0
+  number: 21
   image: {fileID: 21300000, guid: 102e2cef3f068164ea375ce13cd8e26b, type: 3}
-  cost: 0
+  cost: 75
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

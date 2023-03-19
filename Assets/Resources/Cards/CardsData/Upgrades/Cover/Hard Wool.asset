@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Hard Wool
-  number: 0
+  number: 15
   image: {fileID: 21300000, guid: 17ebd2ba34d9b5d40b4e467ebe762347, type: 3}
-  cost: 0
+  cost: 135
   _attackLevel: 0
   _defenseLevel: 1
   _spawnSpeedevel: 0

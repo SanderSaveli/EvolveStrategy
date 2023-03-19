@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Addition Glands
-  number: 0
+  number: 35
   image: {fileID: 21300000, guid: ddbc84aecb1fdde479c2a8c9a37b9411, type: 3}
-  cost: 0
+  cost: 75
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

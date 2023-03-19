@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Sail
-  number: 0
+  number: 44
   image: {fileID: 21300000, guid: 76cff3bf95cae274a812f012a72b1f36, type: 3}
-  cost: 0
+  cost: 110
   _attackLevel: -1
   _defenseLevel: 2
   _spawnSpeedevel: 0

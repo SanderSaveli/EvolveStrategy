@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public sealed class Coroutines : DontDestroyOnLoadSingletone<Coroutines>
+public sealed class Coroutines : Singletone<Coroutines>
 {
     public static Coroutine StartRoutine(IEnumerator corutine)
     {

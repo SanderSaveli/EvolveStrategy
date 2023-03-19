@@ -23,7 +23,7 @@ public class Bank : Singletone<Bank>
         if (_playersPoints[acktor] - cost > 0)
         {
             _playersPoints[acktor] -= cost;
-            EventBus.RaiseEvent<IEvolvePointsChangeHandler>(it => it.EvolvePointsChanges(acktor, cost));
+            EventBus.RaiseEvent<IEvolvePointsChangeHandler>(it => it.EvolvePointsChanges(acktor, _playersPoints[acktor]));
 
             return true;
         }

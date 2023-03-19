@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Masking Feathers
-  number: 0
+  number: 17
   image: {fileID: 21300000, guid: 15de6c851c4feb749a275ad21a81647e, type: 3}
-  cost: 0
+  cost: 80
   _attackLevel: 0
   _defenseLevel: 1
   _spawnSpeedevel: 2

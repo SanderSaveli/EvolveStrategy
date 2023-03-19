@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 3
   title: Large Featers
-  number: 0
+  number: 16
   image: {fileID: 21300000, guid: edb179f17f2fed045910e2bf41a85f16, type: 3}
-  cost: 0
+  cost: 70
   _attackLevel: 0
   _defenseLevel: 2
   _spawnSpeedevel: 1

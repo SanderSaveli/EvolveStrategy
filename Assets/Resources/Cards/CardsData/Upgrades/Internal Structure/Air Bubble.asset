@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Air Bubble
-  number: 0
+  number: 36
   image: {fileID: 21300000, guid: 753f641c89edd764b83be26361e72796, type: 3}
-  cost: 0
+  cost: 120
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

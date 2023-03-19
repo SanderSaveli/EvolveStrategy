@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   title: Beak-needle
-  number: 0
+  number: 66
   image: {fileID: 21300000, guid: b38a24e332c20b249b8ba6b0f1e8dd4e, type: 3}
-  cost: 0
+  cost: 110
   _attackLevel: 2
   _defenseLevel: 0
   _spawnSpeedevel: 1

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using EventBusSystem;
 
 namespace CardSystem
 {
@@ -19,6 +20,7 @@ namespace CardSystem
             _currentPlaceholder = rectTransform.GetComponentInParent<ICardPlaceholder>();
             rectTransform.SetParent(_canvas.transform);
             rectTransform.SetAsLastSibling();
+            EventBus.RaiseEvent<IPlayerHoldsCardHandler>(it => it.PlayerStartHoldCard());
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -39,6 +41,7 @@ namespace CardSystem
                 }
             }
             _currentPlaceholder.ReturnCardBack(this);
+            EventBus.RaiseEvent<IPlayerHoldsCardHandler>(it => it.PlayerStopHoldCard());
         }
 
         public override void InstateCard(CardData data)

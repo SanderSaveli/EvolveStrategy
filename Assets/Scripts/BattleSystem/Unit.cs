@@ -22,11 +22,11 @@ namespace BattleSystem
         /// <summary>
         /// The time it takes for one unit to spawn on a normal cell at 100% spawn rate
         /// </summary>
-        public const float DEFAUL_TIME_TO_SPAWN = 3;
+        public const float DEFAUL_TIME_TO_SPAWN = 4;
         /// <summary>
         /// Time required to move to a normal tile at 100% movement speed
         /// </summary>
-        public const float DEFAUL_TIME_TO_WALCK = 4;
+        public const float DEFAUL_TIME_TO_WALCK = 5;
 
         private int _attack;
         private int _defense;

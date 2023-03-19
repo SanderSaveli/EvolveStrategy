@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Oil glands
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 42
+  image: {fileID: 21300000, guid: b146e92608e3d6d4bb9a75f4036b75de, type: 3}
+  cost: 120
   _attackLevel: 0
   _defenseLevel: 1
   _spawnSpeedevel: 0

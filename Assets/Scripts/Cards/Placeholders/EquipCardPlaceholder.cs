@@ -1,11 +1,10 @@
 using UnityEngine;
 using EventBusSystem;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace CardSystem
 {
-    public class EquipCardPlaceholder : MonoBehaviour, ICardPlaceholder
+    public class EquipCardPlaceholder : MonoBehaviour, ICardPlaceholder, IPlayerHoldsCardHandler
     {
         [SerializeField] private Image _typeIcon;
         [SerializeField] private Image _typeIconCirculit;
@@ -24,6 +23,7 @@ namespace CardSystem
         private void Start()
         {
             RepaintTypeElements();
+            EventBus.Subscribe(this);
         }
 
         public void RemoveCard(ICard card)
@@ -71,6 +71,18 @@ namespace CardSystem
         public void ReturnCardBack(ICard card)
         {
             PostCard(card);
+        }
+
+        public void PlayerStartHoldCard()
+        {
+            if(card != null)
+                card.rectTransform.GetComponent<Image>().raycastTarget = false;
+        }
+
+        public void PlayerStopHoldCard()
+        {
+            if (card != null)
+                card.rectTransform.GetComponent<Image>().raycastTarget = true;
         }
     }
 }

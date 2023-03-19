@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Spiked fin
-  number: 0
+  number: 59
   image: {fileID: 21300000, guid: 5b910e3ec3f7e9a4586deabf87834757, type: 3}
-  cost: 0
+  cost: 120
   _attackLevel: 2
   _defenseLevel: 2
   _spawnSpeedevel: 0

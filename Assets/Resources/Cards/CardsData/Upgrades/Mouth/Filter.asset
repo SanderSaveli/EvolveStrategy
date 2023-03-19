@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   title: Filter
-  number: 0
+  number: 68
   image: {fileID: 21300000, guid: 5437cc36f0cb281498b05888e30863ca, type: 3}
-  cost: 0
+  cost: 85
   _attackLevel: 1
   _defenseLevel: 0
   _spawnSpeedevel: 2

@@ -1,7 +1,5 @@
-using EventBusSystem;
 using System.Collections.Generic;
 using TileSystem;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace BattleSystem
@@ -17,7 +15,7 @@ namespace BattleSystem
         private void OnEnable()
         {
             if (_orderDrawer == null) _orderDrawer = FindObjectOfType<OrderDrawer>();
-            if(_terrainTilemap == null) _terrainTilemap = FindObjectOfType<TerrainTilemap>();
+            if (_terrainTilemap == null) _terrainTilemap = FindObjectOfType<TerrainTilemap>();
         }
 
         private void OnDisable()
@@ -26,16 +24,16 @@ namespace BattleSystem
 
         public void TryGiveOrderToAttackHalfUnit(Vector3 from, Vector3 to, GameAcktor acktor)
         {
-            if (IsConditionsCorrect(from, to, acktor)) 
+            if (IsConditionsCorrect(from, to, acktor))
             {
                 TerrainCell fromCell = _terrainTilemap.GetTile(from);
                 TerrainCell toCell = _terrainTilemap.GetTile(to);
                 TryGiveOrderToAttackHalfUnit(fromCell, toCell, acktor);
             }
         }
-        public void TryGiveOrderToAttackHalfUnit(TerrainCell from, TerrainCell to, GameAcktor acktor) 
+        public void TryGiveOrderToAttackHalfUnit(TerrainCell from, TerrainCell to, GameAcktor acktor)
         {
-            if(IsConditionsCorrect(from, to, acktor))
+            if (IsConditionsCorrect(from, to, acktor))
                 GiveOrderToAttack(from, to, from.unitNumber / 2);
         }
 
@@ -57,7 +55,7 @@ namespace BattleSystem
         private void GiveOrderToAttack(TerrainCell from, TerrainCell to, int unitsSent)
         {
             Unit attackingUnit = from.owner.unit;
-            AttackCell attackCell = new(to, attackingUnit, unitsSent, 
+            AttackCell attackCell = new(to, attackingUnit, unitsSent,
                 attackingUnit.GetMoveDuration(to.cellType.move));
             from.unitNumber -= unitsSent;
             attackCell.OnAttackEnd += ChoseBattleSituation;
@@ -74,7 +72,7 @@ namespace BattleSystem
             }
             return false;
         }
-        private bool IsConditionsCorrect(Vector3 cellA, Vector3 cellB, GameAcktor acktor) 
+        private bool IsConditionsCorrect(Vector3 cellA, Vector3 cellB, GameAcktor acktor)
         {
             if (_terrainTilemap.ContainTile(cellA)
                 && _terrainTilemap.ContainTile(cellB))
@@ -104,7 +102,7 @@ namespace BattleSystem
             Unit defanceUnit = cell.owner.unit;
 
             int defanceUnitCount = cell.unitNumber;
-            while(defanceUnitCount > 0 && attackUnitCount > 0) 
+            while (defanceUnitCount > 0 && attackUnitCount > 0)
             {
                 int mutalDefenderAttack = defanceUnit.attack * defanceUnitCount;
                 int mutalAttackingAttack = attackUnit.attack * attackUnitCount;
@@ -121,9 +119,9 @@ namespace BattleSystem
                 cell.owner = attackUnit.owner;
                 cell.unitNumber = attackUnitCount;
             }
-            else 
+            else
             {
-                cell.unitNumber = defanceUnitCount > 0? defanceUnitCount: 0;
+                cell.unitNumber = defanceUnitCount > 0 ? defanceUnitCount : 0;
             }
         }
 

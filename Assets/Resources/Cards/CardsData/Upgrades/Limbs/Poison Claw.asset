@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Poison Claw
-  number: 0
+  number: 54
   image: {fileID: 21300000, guid: 4c53f323e09fc9e4fa0d15ce5a869281, type: 3}
-  cost: 0
+  cost: 100
   _attackLevel: 3
   _defenseLevel: 0
   _spawnSpeedevel: 0

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Venomous fangs
   m_EditorClassIdentifier: 
   cardType: 0
-  title: Venomous fangs
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  title: Poisonous fangs
+  number: 76
+  image: {fileID: 21300000, guid: a4cd024cfa91ff7419f6c268699c882b, type: 3}
+  cost: 100
   _attackLevel: 3
   _defenseLevel: 1
   _spawnSpeedevel: 0

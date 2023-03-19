@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Membranes With Claws
-  number: 0
+  number: 53
   image: {fileID: 21300000, guid: 225f00a29919c494ab34098aa4da7f8d, type: 3}
-  cost: 0
+  cost: 100
   _attackLevel: 2
   _defenseLevel: 0
   _spawnSpeedevel: 0

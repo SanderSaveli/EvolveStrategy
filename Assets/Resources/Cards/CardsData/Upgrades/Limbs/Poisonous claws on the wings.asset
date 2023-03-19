@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Poisonous claws on the wings
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 55
+  image: {fileID: 21300000, guid: d970622c870f45e42b2ddb478e5ee3c9, type: 3}
+  cost: 125
   _attackLevel: 2
   _defenseLevel: 0
   _spawnSpeedevel: 0

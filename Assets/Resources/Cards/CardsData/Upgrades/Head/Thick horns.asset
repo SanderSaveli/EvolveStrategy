@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 2
   title: Thick horns
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 34
+  image: {fileID: 21300000, guid: 20630ba3d2616e14bbf847730b587774, type: 3}
+  cost: 75
   _attackLevel: 1
   _defenseLevel: 2
   _spawnSpeedevel: 0

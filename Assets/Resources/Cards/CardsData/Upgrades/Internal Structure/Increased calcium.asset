@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Increased calcium
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 40
+  image: {fileID: 21300000, guid: fab07ca69ee7cdb46bdc96a6d6fb979f, type: 3}
+  cost: 55
   _attackLevel: 0
   _defenseLevel: 1
   _spawnSpeedevel: 0

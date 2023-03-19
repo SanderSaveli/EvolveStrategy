@@ -27,7 +27,7 @@ namespace TileSystem
 
         private Region _region = null;
 
-        private bool _isShowen;
+        private bool _isShowen = true;
         private ICellBased building;
 
         [SerializeField] public PlayersList startOwner;
@@ -48,7 +48,6 @@ namespace TileSystem
             {
                 _owner = value;
                 BuildOrDestroyNest();
-
                 if(value != null)
                     EventBus.RaiseEvent<ICellChangeOwnerHandler>(it => it.ChangeOwner(value, this));
                 OnOwnerChenge?.Invoke(owner, this);
@@ -80,21 +79,21 @@ namespace TileSystem
             get => _isNestBuilt;
             set
             {
-                OnNestConditionChenge.Invoke(_isNestBuilt, value, this);
+                OnNestConditionChenge?.Invoke(_isNestBuilt, value, this);
                 _isNestBuilt = value;
                 UpdateNestView();
-                BuildOrDestroyNest();
             }
+        }
+        private void Awake()
+        {
+            _view = GetComponentInChildren<CellView>();
         }
         public void FillCell() 
         {
-            _view = GetComponentInChildren<CellView>();
             UpdateNestView();
             UpdateUnitView();
             if (_owner.acktorName != PlayersList.None)
             {
-                Debug.Log(_owner.acktorName);
-                building = new SimpleSpawner(this);
                 BuildOrDestroyNest();
             }
             OnCellFilled?.Invoke(this);
@@ -143,13 +142,17 @@ namespace TileSystem
             }
             else 
             {
-                if (isNestBuilt)
+                if (isNestBuilt && owner.acktorName == startOwner)
                 {
                     building = new Nest(this);
+                    isNestBuilt = true;
                 }
                 else
                 {
                     building = new SimpleSpawner(this);
+                    if(isNestBuilt == true)
+                        EventBus.RaiseEvent<INestDestroyed>(it => it.OnNestDestroyed(region, this));
+                    isNestBuilt = false;
                 }
             }
         }

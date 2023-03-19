@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   title: Toothy beak
-  number: 0
+  number: 75
   image: {fileID: 21300000, guid: d26465b14f9cda14a9bfc1cc87474672, type: 3}
-  cost: 0
+  cost: 95
   _attackLevel: 1
   _defenseLevel: 0
   _spawnSpeedevel: 2

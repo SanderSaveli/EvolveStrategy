@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 1
   title: Enlarged Lungs
-  number: 0
+  number: 38
   image: {fileID: 21300000, guid: 264e06e25a5c41a48888f30facd9be08, type: 3}
-  cost: 0
+  cost: 60
   _attackLevel: 0
   _defenseLevel: 0
   _spawnSpeedevel: 0

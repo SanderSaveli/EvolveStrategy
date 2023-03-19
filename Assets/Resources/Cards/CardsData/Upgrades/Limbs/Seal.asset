@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 4
   title: Seal
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 58
+  image: {fileID: 21300000, guid: 7aa3f3b1b5f9c5a429b537d7d72c4ef0, type: 3}
+  cost: 135
   _attackLevel: 0
   _defenseLevel: 1
   _spawnSpeedevel: 0

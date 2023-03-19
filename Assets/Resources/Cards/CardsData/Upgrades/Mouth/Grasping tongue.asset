@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardType: 0
   title: Grasping tongue
-  number: 0
-  image: {fileID: 0}
-  cost: 0
+  number: 69
+  image: {fileID: 21300000, guid: 3e511309921ca5741b07f1c9ff0fd9cd, type: 3}
+  cost: 80
   _attackLevel: 1
   _defenseLevel: 0
   _spawnSpeedevel: 2
