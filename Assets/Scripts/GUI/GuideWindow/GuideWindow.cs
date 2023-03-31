@@ -11,12 +11,14 @@ public class GuideWindow : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private TextMeshProUGUI titleText;
 
     public void FillWindow(GuideWindowData data)
     {
         description.text = data.Text;
         image.sprite = data.Image;
 
+        titleText.text = data.title;
         buttonText.text = "Next";
     }
 

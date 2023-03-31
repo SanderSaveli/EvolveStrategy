@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f46e016441adde44ac72887225f539f, type: 3}
-  m_Name: TestGuideWindow
+  m_Name: Control
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 2c58c29b5a12bed4184287c871b94e7d, type: 3}
-  Text: Hello world!
+  Image: {fileID: 21300000, guid: 08a3e4c9eb2fd824f9040693fb195ae0, type: 3}
+  title: Unit control
+  Text: In order to capture other cells you need to move your units. Units can only
+    move to adjacent cells. Swipe left mouse button to send all units and right mouse
+    button to send half units.

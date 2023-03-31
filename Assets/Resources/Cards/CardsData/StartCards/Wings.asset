@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d6d99182ccc044a9db53335259e35b, type: 3}
   m_Name: Wings
   m_EditorClassIdentifier: 
-  cardType: 0
+  cardType: 4
   title: Wings
   number: 10
   image: {fileID: 21300000, guid: 1d0fc74dadcd2ce4d81695ad6acb1a32, type: 3}

@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelNumber: 1
+  lockBar: {fileID: 5858899199702772042}
 --- !u!1 &5858899200410650757
 GameObject:
   m_ObjectHideFlags: 0

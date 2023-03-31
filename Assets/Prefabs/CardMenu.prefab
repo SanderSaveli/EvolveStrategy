@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7400fd0ab7a0f45be485f913548f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardInRoll: 2
+  cardInRoll: 6
 --- !u!114 &2651789227413807171
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour, IPlayerHoldsCardHandler, IGameEndHand
     private AudioClip cardEquip;
     private AudioClip defeat;
     private AudioClip nestBreack;
+    private AudioClip nestBuild;
     private AudioClip Victory;
     private AudioClip mainTheme;
 
@@ -24,6 +25,7 @@ public class AudioManager : MonoBehaviour, IPlayerHoldsCardHandler, IGameEndHand
         cardEquip = Resources.Load<AudioClip>("Audio/CardEquip");
         defeat = Resources.Load<AudioClip>("Audio/Defeat");
         nestBreack = Resources.Load<AudioClip>("Audio/NestBreack");
+        nestBuild = Resources.Load<AudioClip>("Audio/nestBuild");
         Victory = Resources.Load<AudioClip>("Audio/Victory");
         mainTheme = Resources.Load<AudioClip>("Audio/Saund1");
         _audioSource.clip = mainTheme;

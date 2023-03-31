@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f46e016441adde44ac72887225f539f, type: 3}
+  m_Name: landscape types
+  m_EditorClassIdentifier: 
+  Image: {fileID: 21300000, guid: d03f88c19542f8b418b1e978ad132933, type: 3}
+  title: landscape types
+  Text: There are different types of terrain in the game. They can be identified
+    by the shape of the region's stroke. Rectangular dotted line - walk, this type
+    has no movement penalty. Long rounded line - swimming, here your units will move
+    more slowly. Round dots - climbing, just like swimming your units will move slower.
+    You can increase your movement speed on any terrain with upgrade cards.

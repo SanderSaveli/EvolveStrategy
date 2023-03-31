@@ -9,6 +9,7 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
     private BattleManager _battleManager;
     private GameStateManager _gameStateManager;
     private NestBuilder _nestBuilder;
+    private Region chasenRegion;
 
     public Player(TerrainTilemap terrainTilemap) : 
         base( PlayersList.Player, terrainTilemap)
@@ -20,6 +21,7 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
     }
     public override void OfferToBuildNest(Region region)
     {
+        chasenRegion = region;
         region.ShowNestBuildingViewForPlayer();
     }
 
@@ -32,9 +34,12 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
         {
             if (_terrainTilemap.ContainTile(position))
             {
-                if (_nestBuilder.TryBuildNest(_terrainTilemap.GetTile(position)))
+                if(_terrainTilemap.GetTile(position).region == chasenRegion) 
                 {
-                    EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndState(_terrainTilemap.GetTile(position).region));
+                    if (_nestBuilder.TryBuildNest(_terrainTilemap.GetTile(position)))
+                    {
+                        EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndState(_terrainTilemap.GetTile(position).region));
+                    }
                 }
             }
         }

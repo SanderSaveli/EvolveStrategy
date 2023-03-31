@@ -4,5 +4,6 @@ using UnityEngine;
 public class GuideWindowData : ScriptableObject
 {
     public Sprite Image;
+    public string title;
     public string Text;
 }

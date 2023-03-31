@@ -10,16 +10,13 @@ namespace TileSystem
 
         public bool isNestInRegion;
 
-        private bool isRegionControledOnePlayer;
+        private bool isRegionControledPlayer;
         private GameObject _regionView;
         private RegionBorder _regionBoundes;
         private NestBuildView _buildView;
 
         private CellType _cellType;
-
-        private Dictionary<PlayersList, SubRegionView> _views = new();
-
-        public bool isFade = true;
+        public bool isFade;
 
         public Region(List<TerrainCell> regionCells) 
         {
@@ -32,7 +29,7 @@ namespace TileSystem
             {
                 cell.region = this;
                 isNestInRegion |= cell.isNestBuilt;
-                cell.OnCellFilled += FindSubRegionForCell;
+                cell.OnOwnerChenge += NotifyIfRegionControlStatusChanged;
             }
             CreateRegionBorders();
             EventBus.Subscribe(this);
@@ -42,77 +39,34 @@ namespace TileSystem
         {
             return _regionCells;
         }
-        public void AddCell(TerrainCell cell) 
-        {
-            if (!_regionCells.Contains(cell)) 
-            { 
-                _regionCells.Add(cell);
-                isNestInRegion |= cell.isNestBuilt;  
-                FindSubRegionForCell(cell);
-            }
-        }
 
         public void ShowCellsInfo() 
         {
-            //foreach (KeyValuePair<PlayersList, SubRegionView> pair in _views)
-            //{
-            //    pair.Value.ShowCellsInfo();
-            //}
+            isFade = true;
             _regionBoundes.ShowBorders();
-            //isFade = false;
         }
 
         public void HideCellsInfo() 
         {
-            //foreach(KeyValuePair<PlayersList, SubRegionView> pair in _views) 
-            //{
-            //    //pair.Value.HideCellsInfo();
-            //}
+            isFade = true;
             _regionBoundes.HideBorders();
-            //isFade = true;
         }
 
-
-        private void FindSubRegionForCell(TerrainCell cell) 
+        private void NotifyIfRegionControlStatusChanged(GameAcktor newOwner, TerrainCell cell) 
         {
-            if (!_views.ContainsKey(cell.owner.acktorName))
-                _views.Add(cell.owner.acktorName, CreateNewSubViewElement());
-            _views[cell.owner.acktorName].AddCell(cell);
-            if (isFade) 
+            if (IsOnePlayerControlRegion()) 
             {
-                _views[cell.owner.acktorName].HideCellsInfo();
-            }
-        }
-
-        private SubRegionView CreateNewSubViewElement()
-        {
-            GameObject newViewObject = Object.Instantiate(Resources.Load<GameObject>("ViewElements/SubRegionView"));
-            newViewObject.transform.SetParent(_regionView.transform, false);
-            SubRegionView view = newViewObject.GetComponent<SubRegionView>();
-            view.OnCellChangeOwner += FindSubRegionForCell;
-            view.OnCellChangeOwner += NotifyIfRegionControlStatusChanged;
-            view.OnEmptyView += DeleteEmptySubViewElement;
-            return view;
-        }
-
-        private void DeleteEmptySubViewElement(GameAcktor owner)
-        {
-            Object.Destroy(_views[owner.acktorName].gameObject);
-            _views.Remove(owner.acktorName);
-        }
-
-        private void NotifyIfRegionControlStatusChanged(TerrainCell cell) 
-        { 
-            if(IsOnePlayerControlRegion()) 
-            {
-                isRegionControledOnePlayer = true;
+                if(cell.owner.acktorName == PlayersList.Player) 
+                {
+                    isRegionControledPlayer = true;
+                }
                 EventBus.RaiseEvent<IRegionOwnershipStatusChangedHandler>(it => it.RegionControledBySinglePlayer(this, cell.owner));
                 if(!isNestInRegion) 
                 {
                     cell.owner.OfferToBuildNest(this);
                 }
             }
-            else if (isRegionControledOnePlayer) 
+            else if (isRegionControledPlayer) 
             {
                 HideNestBuildingViewForPlayer();
             }
@@ -141,7 +95,7 @@ namespace TileSystem
         private void HideNestBuildingViewForPlayer()
         {
             EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndState(this));
-            Object.Destroy(_buildView);
+            Object.Destroy(_buildView.gameObject);
         }
 
         private void PlayerClickedOnNestBuildButton() 

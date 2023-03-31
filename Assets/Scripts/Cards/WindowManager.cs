@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WindowManager : MonoBehaviour, IGameEndHandler
+public class WindowManager : MonoBehaviour, IGameEndHandler, IPauseMenuEventHandler
 {
     private GameStateManager _gameStateManager;
     [SerializeField] private GameObject _darckerPrefab;
@@ -28,18 +28,16 @@ public class WindowManager : MonoBehaviour, IGameEndHandler
     public void Start()
     {
         _gameStateManager = GetComponent<GameStateManager>();
-        foreach(GuideWindowData window in _startGuideWindows) 
-        {
-            _guideWindows.Enqueue(window);
-        }
+        StartCoroutine(AddStartWindowToQueue());
         EventBus.Subscribe(this);
     }
-    public void AddDataToQueue(string name)
+
+    private IEnumerator AddStartWindowToQueue() 
     {
-        _guideWindows.Enqueue(Resources.Load<GuideWindowData>("GuideWindows/" + name));
-        if (!_isWindowShowes)
+        yield return new WaitForSeconds(2);
+        foreach (GuideWindowData window in _startGuideWindows)
         {
-            StartShowWindows();
+            AddDataToQueue(window);
         }
     }
     public void AddDataToQueue(GuideWindowData data)
@@ -55,6 +53,7 @@ public class WindowManager : MonoBehaviour, IGameEndHandler
         _isWindowShowes = true;
         Time.timeScale = 0;
         _darckerPrefab.SetActive(true);
+        _darckerPrefab.transform.SetAsLastSibling();
         EventBus.RaiseEvent<IWindowOpenHandler>(it => it.WindowOnen());
         ShowWindow(_guideWindows.Dequeue());
     }
@@ -109,6 +108,7 @@ public class WindowManager : MonoBehaviour, IGameEndHandler
     {
         GameEndWindow endWindow = 
             Instantiate(_gameEndWindow, _canvas.transform).GetComponent<GameEndWindow>();
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
         endWindow.transform.SetAsLastSibling();
         _darckerPrefab.SetActive(true);
         endWindow.header.text = "You win!";
@@ -124,19 +124,24 @@ public class WindowManager : MonoBehaviour, IGameEndHandler
         endWindow.transform.SetAsLastSibling();
         _darckerPrefab.SetActive(true);
         endWindow.header.text = "You lose!";
-        endWindow.backToMeny.onClick.AddListener(BackToMenu);
+        endWindow.backToMeny.onClick.AddListener(BackToMenuGameEnd);
         endWindow.restart.onClick.AddListener(Restart);
         StartCoroutine(WaitAndUnsubscribe());
     }
 
-    public void BackToMenu() 
+    public void BackToMenuGameEnd() 
     {
         Destroy(FindObjectOfType<GameEndWindow>());
         _darckerPrefab.SetActive(false);
+    }
+    public void BackToMenu()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelsList");
     }
     public void Restart()
     {
+        Time.timeScale = 1;
         Destroy(FindObjectOfType<GameEndWindow>());
         _darckerPrefab.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+0);
@@ -145,5 +150,17 @@ public class WindowManager : MonoBehaviour, IGameEndHandler
     { 
         yield return new WaitForSeconds(1);
         EventBus.Unsubscribe(this);
+    }
+
+    public void OpenPause()
+    {
+        EventBus.RaiseEvent<IWindowOpenHandler>(it => it.WindowOnen());
+        Time.timeScale = 0;
+    }
+
+    public void ClousePause()
+    {
+        EventBus.RaiseEvent<IWindowOpenHandler>(it => it.WindowClosed());
+        Time.timeScale = 1;
     }
 }

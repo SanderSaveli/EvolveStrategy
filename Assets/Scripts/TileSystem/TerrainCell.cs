@@ -58,9 +58,12 @@ namespace TileSystem
             get => _unitNumber;
             set 
             { 
-                OnUnitNumberChenge?.Invoke(_unitNumber, value, this);
-                _unitNumber = value;
-                UpdateUnitView();
+                if(value >= 0) 
+                {
+                    OnUnitNumberChenge?.Invoke(_unitNumber, value, this);
+                    _unitNumber = value;
+                    UpdateUnitView();
+                }
             } 
         }
         
@@ -92,10 +95,6 @@ namespace TileSystem
         {
             UpdateNestView();
             UpdateUnitView();
-            if (_owner.acktorName != PlayersList.None)
-            {
-                BuildOrDestroyNest();
-            }
             OnCellFilled?.Invoke(this);
         }
 
@@ -144,13 +143,23 @@ namespace TileSystem
             {
                 if (isNestBuilt && owner.acktorName == startOwner)
                 {
+                    if(building!= null) 
+                    {
+                        building.isAcktive =false;
+                        building = null;
+                    }
                     building = new Nest(this);
                     isNestBuilt = true;
                 }
                 else
                 {
+                    if (building != null)
+                    {
+                        building.isAcktive = false;
+                        building = null;
+                    }
                     building = new SimpleSpawner(this);
-                    if(isNestBuilt == true)
+                    if (isNestBuilt == true)
                         EventBus.RaiseEvent<INestDestroyed>(it => it.OnNestDestroyed(region, this));
                     isNestBuilt = false;
                 }

@@ -11,6 +11,10 @@ public class LevelLoader : MonoBehaviour
 
     private void Awake()
     {
+        if (!PlayerPrefs.HasKey("Level0")) 
+        {
+            PlayerPrefs.SetInt("Level0", 1);
+        }
         MenuAudio audio = FindObjectOfType<MenuAudio>();
         if(audio == null) 
         {
@@ -27,7 +31,8 @@ public class LevelLoader : MonoBehaviour
     }
     public void LoadLevel(int levelNumber) 
     {
-        Destroy(audioSource.gameObject);
+        if(audioSource != null)
+            Destroy(audioSource.gameObject);
         StartCoroutine(PlayAnimationAndLoad(levelNumber));
     }
 
