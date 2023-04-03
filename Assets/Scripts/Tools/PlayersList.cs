@@ -1,4 +1,4 @@
-public enum PlayersList
+public enum AcktorList
 {
     None,
     Player,

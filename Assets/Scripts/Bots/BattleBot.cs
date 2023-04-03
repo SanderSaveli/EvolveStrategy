@@ -10,13 +10,13 @@ public class BattleBot : GameAcktor
     private BattleManager _battleManager;
     private NestBuilder _builder;
 
-    [SerializeField] private PlayersList _me;
+    [SerializeField] private AcktorList _me;
     [SerializeField] private float TimeToOneTurn;
     private Coroutine currentCorutine;
     private int level;
 
-    public BattleBot(PlayersList acktorName, TerrainTilemap terrainTilemap): 
-        base(acktorName, terrainTilemap)
+    public BattleBot(AcktorList acktorName): 
+        base(acktorName)
     {
         _battleManager = BattleManager.instance;
         _builder = NestBuilder.instance;

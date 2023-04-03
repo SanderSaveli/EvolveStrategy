@@ -1,33 +1,10 @@
 using System;
-using UnityEngine.UI;
+using EventBusSystem;
 
 namespace BattleSystem
 {
     public class Unit
     {
-        public Unit(GameAcktor owner)
-        {
-            this.owner = owner;
-            _attack = 10;
-            _defense = 10;
-            _walckSpeed = 1;
-            _spawnSpeed = 1;
-            _climbSpeed = 0.25f;
-            _swimSpeed = 0.25f;
-
-            _poisonResistance = 0.25f;
-            _coldResistance= 0.25f;
-            _hotResistance = 0.25f;
-        }
-        /// <summary>
-        /// The time it takes for one unit to spawn on a normal cell at 100% spawn rate
-        /// </summary>
-        public const float DEFAUL_TIME_TO_SPAWN = 4;
-        /// <summary>
-        /// Time required to move to a normal tile at 100% movement speed
-        /// </summary>
-        public const float DEFAUL_TIME_TO_WALCK = 5;
-
         private int _attack;
         private int _defense;
         private float _walckSpeed;
@@ -38,7 +15,24 @@ namespace BattleSystem
         private float _hotResistance;
         private float _poisonResistance;
 
-        public GameAcktor owner;
+        public GameAcktor owner { get; private set; }
+
+        public Unit(GameAcktor owner)
+        {
+            this.owner = owner;
+            _attack = BattleConstants.START_UNIT_ATTACK;
+            _defense = BattleConstants.START_UNIT_DEFENSE;
+
+            _walckSpeed = BattleConstants.START_UNIT_WALCK_SPEED;
+            _climbSpeed = BattleConstants.START_UNIT_CLIMB_SPEED;
+            _swimSpeed = BattleConstants.START_UNIT_SWIMMING_SPEED;
+
+            _spawnSpeed = BattleConstants.START_UNIT_SPAWN_SPEED;
+
+            _poisonResistance = BattleConstants.START_UNIT_POISON_RESISTANCE;
+            _coldResistance = BattleConstants.START_UNIT_COLD_RESISTANCE;
+            _hotResistance = BattleConstants.START_UNIT_HEAT_RESISTANCE;
+        }
 
         public int attack
         {
@@ -89,18 +83,18 @@ namespace BattleSystem
             set => _poisonResistance = value;
         }
 
-        public float GetMoveDuration(MoveType type) 
+        public float GetMoveDuration(MoveType type)
         {
             switch (type)
             {
                 case (MoveType.Walcking):
-                    return DEFAUL_TIME_TO_WALCK / walckSpeed;
+                    return BattleConstants.DEFAUL_TIME_TO_WALCK / walckSpeed;
                 case (MoveType.Swimming):
-                    return DEFAUL_TIME_TO_WALCK / swimSpeed;
+                    return BattleConstants.DEFAUL_TIME_TO_WALCK / swimSpeed;
                 case (MoveType.Climbing):
-                    return DEFAUL_TIME_TO_WALCK / climbSpeed;
+                    return BattleConstants.DEFAUL_TIME_TO_WALCK / climbSpeed;
                 default:
-                    return DEFAUL_TIME_TO_WALCK / walckSpeed;
+                    return BattleConstants.DEFAUL_TIME_TO_WALCK / walckSpeed;
             }
         }
     }

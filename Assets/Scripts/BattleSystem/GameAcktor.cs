@@ -1,25 +1,25 @@
 using BattleSystem;
+using EventBusSystem;
+using System.Collections.Generic;
 using TileSystem;
 using UnityEngine;
-using System.Collections.Generic;
-using EventBusSystem;
 
 public abstract class GameAcktor : ICellChangeOwnerHandler
 {
-    [SerializeField] public PlayersList acktorName { get; protected set; }
+    [SerializeField] public AcktorList acktorName { get; protected set; }
     [SerializeField] public Unit unit { get; protected set; }
 
     protected List<TerrainCell> _myCells = new();
 
     protected TerrainTilemap _terrainTilemap;
     private bool _isAcktivated;
-    
-    public GameAcktor(PlayersList acktorName, TerrainTilemap terrainTilemap)
+
+    public GameAcktor(AcktorList acktorName)
     {
         _isAcktivated = false;
         this.acktorName = acktorName;
         this.unit = new(this);
-        _terrainTilemap = terrainTilemap;
+        _terrainTilemap = GameObject.FindObjectOfType<TerrainTilemap>();
         EventBus.Subscribe(this);
     }
     ~GameAcktor()

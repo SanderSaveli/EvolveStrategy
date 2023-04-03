@@ -9,16 +9,16 @@ public class PlayerPoints : MonoBehaviour, IEvolvePointsChangeHandler
     private void OnEnable()
     {
         EventBus.Subscribe(this);
-        textField.text = Bank.instance.GetAcktorPoints(PlayersList.Player).ToString();
+        textField.text = Bank.instance.GetAcktorPoints(AcktorList.Player).ToString();
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe(this);
     }
-    public void EvolvePointsChanges(PlayersList acktor, int value)
+    public void EvolvePointsChanges(AcktorList acktor, int value)
     {
-        if(acktor == PlayersList.Player) 
+        if(acktor == AcktorList.Player) 
         {
             textField.text = value.ToString();
         }

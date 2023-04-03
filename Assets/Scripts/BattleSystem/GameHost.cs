@@ -1,52 +1,52 @@
 using EventBusSystem;
 using System.Collections.Generic;
-using TileSystem;
-using UnityEngine;
 
-public class GameHost : MonoBehaviour, IAcktorDiedHandler
+public class GameHost : Singletone<GameHost>, IAcktorDiedHandler
 {
-    private Dictionary<PlayersList, GameAcktor> acktiveAcktors = new();
+    private Dictionary<AcktorList, GameAcktor> acktiveAcktors = new();
     private List<BattleBot> bots = new();
     private bool _isGameEnd;
 
     private void Start()
     {
         EventBus.Subscribe(this);
-        TerrainTilemap tilemap = FindObjectOfType<TerrainTilemap>();
-        acktiveAcktors.Add(PlayersList.Player, new Player(tilemap));
-        acktiveAcktors.Add(PlayersList.None, new NoneAcktor(tilemap));
-        List<TerrainCell> cells = tilemap.GetAllCells();
-        foreach (TerrainCell cell in cells)
-        {
-            if (!acktiveAcktors.ContainsKey(cell.startOwner))
-            {
-                acktiveAcktors.Add(cell.startOwner, new BattleBot(cell.startOwner, tilemap));
-                bots.Add(acktiveAcktors[cell.startOwner] as BattleBot);
-            }
-            cell.owner = acktiveAcktors[cell.startOwner];
-            cell.FillCell();
-        }
-        Bank bank = Bank.instance;
-        foreach(KeyValuePair<PlayersList, GameAcktor> pair in acktiveAcktors) 
-        {
-            bank.OpenAnAccount(pair.Key, 0);
-        }
-        foreach(BattleBot bot in bots) 
-        {
-            bot.StartBot();
-        }
     }
 
+    public GameAcktor GetAcktorByEnum(AcktorList acktor)
+    {
+        if (!acktiveAcktors.ContainsKey(acktor))
+        {
+            acktiveAcktors.Add(acktor, CreateAcktor(acktor));
+        }
+        return acktiveAcktors[acktor];
+    }
+
+    private GameAcktor CreateAcktor(AcktorList acktor)
+    {
+        Bank.instance.OpenAnAccount(acktor, 0);
+        switch (acktor)
+        {
+            case AcktorList.Player:
+                return new Player();
+            case AcktorList.None:
+                return new NoneAcktor();
+            default:
+                BattleBot bot = new BattleBot(acktor);
+                bots.Add(bot);
+                bot.StartBot();
+                return bot;
+        }
+    }
     public void AcktorDie(GameAcktor acktor)
     {
-        if (!_isGameEnd) 
+        if (!_isGameEnd)
         {
-            if (acktor.acktorName == PlayersList.Player)
+            if (acktor.acktorName == AcktorList.Player)
             {
                 _isGameEnd = true;
                 EventBus.RaiseEvent<IGameEndHandler>(it => it.PlayerLose());
             }
-            else if (acktor.acktorName != PlayersList.None)
+            else if (acktor.acktorName != AcktorList.None)
             {
                 BattleBot bot = acktor as BattleBot;
                 if (bots.Contains(bot))

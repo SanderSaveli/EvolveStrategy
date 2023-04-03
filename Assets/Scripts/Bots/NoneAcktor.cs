@@ -2,7 +2,7 @@ using TileSystem;
 
 public class NoneAcktor : GameAcktor
 {
-    public NoneAcktor(TerrainTilemap terrainTilemap): base(PlayersList.None, terrainTilemap) 
+    public NoneAcktor(): base(AcktorList.None) 
     {    }
 
     public override void OfferToBuildNest(Region region)

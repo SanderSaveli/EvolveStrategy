@@ -17,7 +17,7 @@ public class CellView : MonoBehaviour
             gameObject.GetComponentInParent<Transform>().localScale;
     }
 
-    public void UpdateUnitView(int newUnitNumber, PlayersList owner, bool isShowen)
+    public void UpdateUnitView(int newUnitNumber, AcktorList owner, bool isShowen)
     {
         _unitsNumberTxt.ChangeText(newUnitNumber.ToString());
         Color col = new PlayersColors().GetColor(owner);

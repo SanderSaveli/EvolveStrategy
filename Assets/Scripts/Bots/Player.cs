@@ -11,10 +11,9 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
     private NestBuilder _nestBuilder;
     private Region chasenRegion;
 
-    public Player(TerrainTilemap terrainTilemap) : 
-        base( PlayersList.Player, terrainTilemap)
+    public Player() : 
+        base( AcktorList.Player)
     {
-        acktorName = PlayersList.Player;
         _battleManager = BattleManager.instance;
         _gameStateManager = GameStateManager.instance;
         _nestBuilder = NestBuilder.instance;

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class Bank : Singletone<Bank>
 {
-    private Dictionary<PlayersList, int> _playersPoints = new();
-    public bool OpenAnAccount(PlayersList acktor, int startPoints) 
+    private Dictionary<AcktorList, int> _playersPoints = new();
+    public bool OpenAnAccount(AcktorList acktor, int startPoints) 
     {
         if (_playersPoints.ContainsKey(acktor))
         {
@@ -14,7 +14,7 @@ public class Bank : Singletone<Bank>
         _playersPoints.Add(acktor, startPoints);
         return false;
     }
-    public bool TryToBuy(PlayersList acktor, int cost)
+    public bool TryToBuy(AcktorList acktor, int cost)
     {
         if (cost < 0)
         {
@@ -30,13 +30,13 @@ public class Bank : Singletone<Bank>
         return false;
     }
 
-    public void AddPoints(PlayersList acktor, int value)
+    public void AddPoints(AcktorList acktor, int value)
     {
         _playersPoints[acktor] += value;
         EventBus.RaiseEvent<IEvolvePointsChangeHandler>(it => it.EvolvePointsChanges(acktor, value));
     }
 
-    public int GetAcktorPoints(PlayersList acktor) 
+    public int GetAcktorPoints(AcktorList acktor) 
     {
         return _playersPoints[acktor];
     }

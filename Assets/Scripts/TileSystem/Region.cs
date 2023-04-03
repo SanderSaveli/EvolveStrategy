@@ -56,7 +56,7 @@ namespace TileSystem
         {
             if (IsOnePlayerControlRegion()) 
             {
-                if(cell.owner.acktorName == PlayersList.Player) 
+                if(cell.owner.acktorName == AcktorList.Player) 
                 {
                     isRegionControledPlayer = true;
                 }

@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class PlayersColors
 {
-    public Color GetColor(PlayersList player) 
+    public Color GetColor(AcktorList player) 
     {
         switch (player) 
         { 
-            case PlayersList.None:
+            case AcktorList.None:
                 return Color.gray;
 
-            case PlayersList.Player:
+            case AcktorList.Player:
                 return Color.yellow;
 
-            case PlayersList.Red:
+            case AcktorList.Red:
                 return Color.red;
 
-            case PlayersList.Blue:
+            case AcktorList.Blue:
                 return Color.blue;
 
-            case PlayersList.Green:
+            case AcktorList.Green:
                 return Color.green;
 
             default: 

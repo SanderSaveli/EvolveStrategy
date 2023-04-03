@@ -28,7 +28,7 @@ public class CardShop : MonoBehaviour
 
     public void TryRerollForPoints() 
     {
-        if (bank.TryToBuy(PlayersList.Player, PRISE_FOR_REROLL))
+        if (bank.TryToBuy(AcktorList.Player, PRISE_FOR_REROLL))
         {
             RerollCurrentCards();
         }
@@ -50,7 +50,7 @@ public class CardShop : MonoBehaviour
 
     public bool TryByCard(CardData card) 
     {
-        if (bank.TryToBuy(PlayersList.Player, card.cost)) 
+        if (bank.TryToBuy(AcktorList.Player, card.cost)) 
         {
             AddNewCardsToSellPull(card);
             EventBus.RaiseEvent<ICardBoughtHandler>(it => it.CardBought(card));

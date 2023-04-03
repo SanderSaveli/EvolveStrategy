@@ -69,33 +69,11 @@ namespace TileSystem
             return cells;
         }
 
-        public List<TerrainCell> GetAllCellsOfOnePlayer(GameAcktor player)
-        {
-            if(_terrainTilemap == null) 
-            {
-                _baseTilemap = GetComponent<Tilemap>();
-                InitializeTerrainMap();
-            }
-            List<TerrainCell> cellsOfOnePlayer = new();
-            foreach (TerrainCell cell in _terrainTilemap.Values) 
-            { 
-                if(cell.owner == player) 
-                { 
-                    cellsOfOnePlayer.Add(cell);
-                }   
-            }
-            return cellsOfOnePlayer;
-        }
-
         public Vector3Int GetCellCoordinate(TerrainCell cell) 
         {
             return (Vector3Int)GetCoordinateFromWorldPosition(cell.transform.position);
         }
 
-        public TerrainCell GetCellFromGridCoordinate(Vector2Int coordinate) 
-        { 
-            return _terrainTilemap[coordinate];
-        }
         private void InitializeTerrainMap()
         {
             _terrainTilemap = new();
