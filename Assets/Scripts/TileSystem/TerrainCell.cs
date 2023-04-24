@@ -88,7 +88,7 @@ namespace TileSystem
         private void Awake()
         {
             _view = GetComponentInChildren<CellView>();
-            _owner = GameHost.instance.GetAcktorByEnum(startOwner);
+            _owner = ServiceLocator.Get<GameHost>().GetAcktorByEnum(startOwner);
             if (startOwner!= AcktorList.None) 
             {
                 if (_isNestBuilt) 

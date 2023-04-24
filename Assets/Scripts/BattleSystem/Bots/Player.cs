@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHandler
 {
-    private BattleManager _battleManager;
+    private BattleService _battleManager;
     private GameStateManager _gameStateManager;
     private NestBuilder _nestBuilder;
     private Region chasenRegion;
@@ -14,7 +14,7 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
     public Player() : 
         base( AcktorList.Player)
     {
-        _battleManager = BattleManager.instance;
+        _battleManager = ServiceLocator.Get<BattleService>();
         _gameStateManager = GameStateManager.instance;
         _nestBuilder = NestBuilder.instance;
     }

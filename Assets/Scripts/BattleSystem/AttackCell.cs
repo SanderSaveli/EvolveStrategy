@@ -5,14 +5,12 @@ namespace BattleSystem
     public class AttackCell : IAttackComand
     {
         #region events
-        public delegate void AttackEnd(TerrainCell to, Unit unit, int unitCount);
-        public event AttackEnd OnAttackEnd;
+        public event IAttackComand.AttackEnd OnAttackEnd;
 
-        public delegate void ComandEnd(IComand comand);
-        public event ComandEnd OnComandEnd;
+        public event IComand.ComandEnd OnComandEnd;
         #endregion
 
-        private float progress;
+        public float progress { get; private set; }
         private Timer _timer = new();
         private TerrainCell _to;
         private Unit _unit;
@@ -26,10 +24,6 @@ namespace BattleSystem
             _timer.StartTimer(timeInSeconds);
             _timer.OnTimeOver += CommandSucsess;
             Coroutines.StartRoutine(UpdateProgress());
-        }
-        public float GetProgress()
-        {
-            return progress;
         }
 
         public GameAcktor GetAttackingPlayer() 

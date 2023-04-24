@@ -1,7 +1,7 @@
 using EventBusSystem;
 using UnityEngine;
 
-public class Pause : MonoBehaviour
+public class Pause : MonoBehaviour, IPauseButtonClickedHandler
 {
     public RectTransform pauseMenu;
     public RectTransform pauseButton;
@@ -9,8 +9,15 @@ public class Pause : MonoBehaviour
     private void Start()
     {
         gameStateManager = GameStateManager.instance;
+        EventBus.Subscribe(this);
     }
-    public void OpenPause()
+
+    public void OnPauseButtonClicked()
+    {
+        OpenPause();
+    }
+
+    private void OpenPause()
     {
         if(gameStateManager.currentState!= GameStates.NestCellChoses) 
         {
@@ -19,7 +26,7 @@ public class Pause : MonoBehaviour
             EventBus.RaiseEvent<IPauseMenuEventHandler>(it => it.OpenPause());
         }
     }
-    public void ClousePause()
+    private void ClousePause()
     {
         pauseMenu.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(true);
@@ -35,4 +42,5 @@ public class Pause : MonoBehaviour
     {
         EventBus.RaiseEvent<IPauseMenuEventHandler>(it => it.Restart());
     }
+
 }

@@ -7,7 +7,7 @@ using BattleSystem;
 public class BattleBot : GameAcktor
 {
     private Bank _bank;
-    private BattleManager _battleManager;
+    private BattleService _battleManager;
     private NestBuilder _builder;
 
     [SerializeField] private AcktorList _me;
@@ -18,7 +18,7 @@ public class BattleBot : GameAcktor
     public BattleBot(AcktorList acktorName): 
         base(acktorName)
     {
-        _battleManager = BattleManager.instance;
+        _battleManager = ServiceLocator.Get<BattleService>();
         _builder = NestBuilder.instance;
         _bank = Bank.instance;
         level = 1;

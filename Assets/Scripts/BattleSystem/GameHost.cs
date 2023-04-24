@@ -1,16 +1,11 @@
 using EventBusSystem;
 using System.Collections.Generic;
 
-public class GameHost : Singletone<GameHost>, IAcktorDiedHandler
+public class GameHost : IService, IAcktorDiedHandler
 {
     private Dictionary<AcktorList, GameAcktor> acktiveAcktors = new();
     private List<BattleBot> bots = new();
     private bool _isGameEnd;
-
-    private void Start()
-    {
-        EventBus.Subscribe(this);
-    }
 
     public GameAcktor GetAcktorByEnum(AcktorList acktor)
     {
@@ -62,4 +57,12 @@ public class GameHost : Singletone<GameHost>, IAcktorDiedHandler
             }
         }
     }
+
+    public void StartWork()
+    {
+        EventBus.Subscribe(this);
+    }
+
+    public void EndWork()
+    {   }
 }

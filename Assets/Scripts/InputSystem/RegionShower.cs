@@ -1,45 +1,49 @@
 using TileSystem;
 using UnityEngine;
 
-public class RegionShower : MonoBehaviour
-{
-    private TerrainTilemap _terrainTilemap;
-    private InputManager _inputManager;
-    private GameStateManager _gameStateManager;
-
-    private Region _previousRegion = null;
-
-    private void Awake()
+namespace UISystem 
+{ 
+    public class RegionShower
     {
-        _inputManager = InputManager.instance;
-        _terrainTilemap = FindObjectOfType<TerrainTilemap>();
-        _gameStateManager = GameStateManager.instance;
-    }
+        private TerrainTilemap _terrainTilemap;
+        private GameStateManager _gameStateManager;
 
-    private void Update()
-    {
-        if (_gameStateManager.currentState == GameStates.Battle)
+        private Region _previousRegion = null;
+
+        public RegionShower() 
         {
-            if (_terrainTilemap.ContainTile(_inputManager.cursorPosition))
-            {
-                Region newRegion = _terrainTilemap.GetTile(_inputManager.cursorPosition).region;
-                if (newRegion.isFade && newRegion != _previousRegion)
-                {
-                    newRegion.ShowCellsInfo();
-                    if (_previousRegion != null)
-                        _previousRegion.HideCellsInfo();
-                    _previousRegion = newRegion;
-                }
-            }
-            else
-            {
-                if (_previousRegion != null)
-                {
-                    _previousRegion.HideCellsInfo();
-                    _previousRegion = null;
-                }
-            }
+            _terrainTilemap = Object.FindObjectOfType<TerrainTilemap>();
+            _gameStateManager = GameStateManager.instance;
+
+            InputManager.instance.OnCursorPositionChanged += ShowRegion;
         }
 
+        private void ShowRegion(Vector3 position)
+        {
+            if (_gameStateManager.currentState == GameStates.Battle)
+            {
+                if (_terrainTilemap.ContainTile(position))
+                {
+                    Region newRegion = _terrainTilemap.GetTile(position).region;
+                    if (newRegion.isFade && newRegion != _previousRegion)
+                    {
+                        newRegion.ShowCellsInfo();
+                        if (_previousRegion != null)
+                            _previousRegion.HideCellsInfo();
+                        _previousRegion = newRegion;
+                    }
+                }
+                else
+                {
+                    if (_previousRegion != null)
+                    {
+                        _previousRegion.HideCellsInfo();
+                        _previousRegion = null;
+                    }
+                }
+            }
+
+        }
     }
 }
+

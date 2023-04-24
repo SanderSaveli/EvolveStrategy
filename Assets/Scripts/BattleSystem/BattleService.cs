@@ -1,25 +1,26 @@
+using EventBusSystem;
 using System.Collections.Generic;
 using TileSystem;
+using UISystem;
 using UnityEngine;
 
 namespace BattleSystem
 {
-    public class BattleManager : Singletone<BattleManager>
+    public class BattleService : IService
     {
-        private OrderDrawer _orderDrawer;
-
         private TerrainTilemap _terrainTilemap;
 
-        private List<IComand> _comandList = new();
+        private List<IComand> _comandList;
 
-        private void OnEnable()
+        public void StartWork()
         {
-            if (_orderDrawer == null) _orderDrawer = FindObjectOfType<OrderDrawer>();
-            if (_terrainTilemap == null) _terrainTilemap = FindObjectOfType<TerrainTilemap>();
+            _comandList= new();
+            _terrainTilemap = Object.FindObjectOfType<TerrainTilemap>();
         }
 
-        private void OnDisable()
+        public void EndWork()
         {
+            _comandList.Clear();
         }
 
         public void TryGiveOrderToAttackHalfUnit(Vector3 from, Vector3 to, GameAcktor acktor)
@@ -55,13 +56,13 @@ namespace BattleSystem
         private void GiveOrderToAttack(TerrainCell from, TerrainCell to, int unitsSent)
         {
             Unit attackingUnit = from.owner.unit;
-            AttackCell attackCell = new(to, attackingUnit, unitsSent,
+            AttackCell attackComand = new(to, attackingUnit, unitsSent,
                 attackingUnit.GetMoveDuration(to.cellType.move));
             from.unitNumber -= unitsSent;
-            attackCell.OnAttackEnd += ChoseBattleSituation;
-            attackCell.OnComandEnd += RemoveComand;
-            _comandList.Add(attackCell);
-            _orderDrawer.NewComand(from.transform.position, to.transform.position, attackCell);
+            attackComand.OnAttackEnd += ChoseBattleSituation;
+            attackComand.OnComandEnd += RemoveComand;
+            _comandList.Add(attackComand);
+            EventBus.RaiseEvent<IComandGivenHandler>(it => it.OnGivenComandToAttack(from, to, attackComand));
         }
 
         private bool IsConditionsCorrect(TerrainCell from, TerrainCell to, GameAcktor acktor)

@@ -44,14 +44,15 @@ namespace EventBusSystem
 
                 foreach (IGlobalSubscriber subscriber in subscribersOfThisAction.List)
                 {
-                    try
-                    {
-                        action?.Invoke((TSubscriber)subscriber);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError(e);
-                    }
+                    action?.Invoke((TSubscriber)subscriber);
+                    //try
+                    //{
+                    //    action?.Invoke((TSubscriber)subscriber);
+                    //}
+                    //catch (Exception e)
+                    //{
+                    //    Debug.LogError(e);
+                    //}
                 }
 
                 subscribersOfThisAction._isExecuting = false;
