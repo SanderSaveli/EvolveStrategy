@@ -94,13 +94,13 @@ namespace TileSystem
 
         private void HideNestBuildingViewForPlayer()
         {
-            EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndState(this));
+            EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndChoiseState(this));
             Object.Destroy(_buildView.gameObject);
         }
 
         private void PlayerClickedOnNestBuildButton() 
         {
-            EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.StartState(this));
+            EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.StartChoiseState(this));
             _buildView.OnClick -= PlayerClickedOnNestBuildButton;
             Object.Destroy(_buildView.gameObject);
         }
@@ -123,13 +123,13 @@ namespace TileSystem
             _regionBoundes.AssignVertices(_regionCells, _cellType);
         }
 
-        public void StartState(Region region)
+        public void StartChoiseState(Region region)
         {
             if(region == this)
                 _regionBoundes.HiliteBorders(Color.yellow);
         }
 
-        public void EndState(Region region)
+        public void EndChoiseState(Region region)
         {
             if (region == this)
                 _regionBoundes.EndHiliteBorders();

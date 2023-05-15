@@ -1,7 +1,6 @@
 using EventBusSystem;
 using System.Collections.Generic;
 using TileSystem;
-using UISystem;
 using UnityEngine;
 
 namespace BattleSystem
@@ -14,7 +13,7 @@ namespace BattleSystem
 
         public void StartWork()
         {
-            _comandList= new();
+            _comandList = new();
             _terrainTilemap = Object.FindObjectOfType<TerrainTilemap>();
         }
 

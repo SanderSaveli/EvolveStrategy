@@ -1,26 +1,32 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SceneLoader : DontDestroyOnLoadSingletone<SceneLoader>
 {
+    public GameLoadData gameLoadData { get; private set; }
+    public MenuLoadData menuLoadData { get; private set; }
+
+    public void RestartCurrentLevel() 
+    {
+        if (gameLoadData != null)
+            SceneManager.LoadScene("Level", LoadSceneMode.Single);
+        else
+            throw new Exception("There is no gameLoadData to restart level");
+    }
     public void LoadLevel(int level)
     {
+        gameLoadData = new GameLoadData(level);
         SceneManager.LoadScene("Level");
-        Instantiate(Resources.Load(GetLevelPath(level)));
     }
 
     public void LoadLevelMenu()
     {
-
+        menuLoadData = new MenuLoadData();
+        SceneManager.LoadScene("LevelMenu");
     }
 
     public void LoadMainMenu()
     {
-
-    }
-
-    private string GetLevelPath(int number)
-    {
-        return "Levels/Level" + number.ToString() + ".prefab";
+        SceneManager.LoadScene("MainMenu");
     }
 }

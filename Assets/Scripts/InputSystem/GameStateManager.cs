@@ -1,24 +1,32 @@
-using UnityEngine;
 using EventBusSystem;
 using TileSystem;
 
-public class GameStateManager : Singletone<GameStateManager>, IPlayerChoosesNestCellHandler, IWindowOpenHandler, IGameEndHandler
+public class GameStateManager : IService, IPlayerChoosesNestCellHandler, IWindowOpenHandler, IGameEndHandler
 {
     public GameStates currentState { get; private set; }
 
-    public void StartState(Region region)
-    {
-        ChangeCurrentState(GameStates.NestCellChoses);
+    public GameStateManager(GameStates startState) 
+    { 
+        currentState = startState;
     }
-    public void EndState(Region region)
-    {
-        ChangeCurrentState(GameStates.Battle);
-    }
-
-    private void Awake()
+    public void StartWork()
     {
         currentState = GameStates.Battle;
         EventBus.Subscribe(this);
+    }
+
+    public void EndWork()
+    {
+
+    }
+
+    public void StartChoiseState(Region region)
+    {
+        ChangeCurrentState(GameStates.NestCellChoses);
+    }
+    public void EndChoiseState(Region region)
+    {
+        ChangeCurrentState(GameStates.Battle);
     }
 
     private void ChangeCurrentState(GameStates newState)

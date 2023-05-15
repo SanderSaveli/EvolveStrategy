@@ -85,7 +85,7 @@ namespace TileSystem
                 UpdateNestView();
             }
         }
-        private void Awake()
+        private void Start()
         {
             _view = GetComponentInChildren<CellView>();
             _owner = ServiceLocator.Get<GameHost>().GetAcktorByEnum(startOwner);

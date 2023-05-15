@@ -8,7 +8,7 @@ public class Pause : MonoBehaviour, IPauseButtonClickedHandler
     public GameStateManager gameStateManager;
     private void Start()
     {
-        gameStateManager = GameStateManager.instance;
+        gameStateManager = ServiceLocator.Get<GameStateManager>();
         EventBus.Subscribe(this);
     }
 
@@ -26,7 +26,7 @@ public class Pause : MonoBehaviour, IPauseButtonClickedHandler
             EventBus.RaiseEvent<IPauseMenuEventHandler>(it => it.OpenPause());
         }
     }
-    private void ClousePause()
+    public void ClousePause()
     {
         pauseMenu.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(true);

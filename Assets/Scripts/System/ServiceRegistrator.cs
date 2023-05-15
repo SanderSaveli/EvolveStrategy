@@ -2,11 +2,12 @@ using BattleSystem;
 using UISystem;
 using UnityEngine;
 
-public class ServiceRegistrator : MonoBehaviour
+public class ServiceRegistrator
 {
-    private void Awake()
+    public void RegistrateAllServices()
     {
         new ServiceLocator();
+        ServiceLocator.RegisterService(new GameStateManager(GameStates.Battle));
         ServiceLocator.RegisterService(new BattleService());
         ServiceLocator.RegisterService(new GameHost());
         ServiceLocator.RegisterService(new AudioService());

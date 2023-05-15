@@ -1,7 +1,9 @@
 using EventBusSystem;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class GameHost : IService, IAcktorDiedHandler
+public class GameHost : IService, IAcktorDiedHandler, IGameEndHandler
 {
     private Dictionary<AcktorList, GameAcktor> acktiveAcktors = new();
     private List<BattleBot> bots = new();
@@ -65,4 +67,14 @@ public class GameHost : IService, IAcktorDiedHandler
 
     public void EndWork()
     {   }
+
+    public void PlayerWin()
+    {
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
+    }
+
+    public void PlayerLose()
+    {
+        
+    }
 }

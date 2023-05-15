@@ -4,8 +4,8 @@ namespace EventBusSystem
 {
     public interface IPlayerChoosesNestCellHandler : IGlobalSubscriber
     {
-        public void StartState(Region region);
-        public void EndState(Region region);
+        public void StartChoiseState(Region region);
+        public void EndChoiseState(Region region);
     }
 }
 

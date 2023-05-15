@@ -15,7 +15,7 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
         base( AcktorList.Player)
     {
         _battleManager = ServiceLocator.Get<BattleService>();
-        _gameStateManager = GameStateManager.instance;
+        _gameStateManager = ServiceLocator.Get<GameStateManager>();
         _nestBuilder = NestBuilder.instance;
     }
     public override void OfferToBuildNest(Region region)
@@ -37,7 +37,7 @@ public class Player : GameAcktor, ISwipeHandler, IClickHandler, ICardEquipedHand
                 {
                     if (_nestBuilder.TryBuildNest(_terrainTilemap.GetTile(position)))
                     {
-                        EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndState(_terrainTilemap.GetTile(position).region));
+                        EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndChoiseState(_terrainTilemap.GetTile(position).region));
                     }
                 }
             }

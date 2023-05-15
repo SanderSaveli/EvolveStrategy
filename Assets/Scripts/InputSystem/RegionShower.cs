@@ -13,7 +13,7 @@ namespace UISystem
         public RegionShower() 
         {
             _terrainTilemap = Object.FindObjectOfType<TerrainTilemap>();
-            _gameStateManager = GameStateManager.instance;
+            _gameStateManager = ServiceLocator.Get<GameStateManager>();
 
             InputManager.instance.OnCursorPositionChanged += ShowRegion;
         }
