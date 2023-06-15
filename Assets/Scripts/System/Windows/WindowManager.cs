@@ -29,7 +29,6 @@ public class WindowManager : MonoBehaviour, IGameEndHandler, IPauseMenuEventHand
     {
         _gameStateManager = ServiceLocator.Get<GameStateManager>();
         _darcker = CreateDarcker();
-        Debug.Log(_darcker);
         StartCoroutine(AddStartWindowToQueue());
         EventBus.Subscribe(this);
     }
@@ -132,6 +131,7 @@ public class WindowManager : MonoBehaviour, IGameEndHandler, IPauseMenuEventHand
     {
         Destroy(FindObjectOfType<GameEndWindow>());
         _darcker.SetActive(false);
+        BackToMenu();
     }
     public void BackToMenu()
     {

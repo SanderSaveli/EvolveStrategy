@@ -95,14 +95,20 @@ namespace TileSystem
         private void HideNestBuildingViewForPlayer()
         {
             EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.EndChoiseState(this));
-            Object.Destroy(_buildView.gameObject);
+            if(_buildView!= null) 
+            {
+                Object.Destroy(_buildView.gameObject);
+            }
         }
 
         private void PlayerClickedOnNestBuildButton() 
         {
             EventBus.RaiseEvent<IPlayerChoosesNestCellHandler>(it => it.StartChoiseState(this));
             _buildView.OnClick -= PlayerClickedOnNestBuildButton;
-            Object.Destroy(_buildView.gameObject);
+            if (_buildView != null)
+            {
+                Object.Destroy(_buildView.gameObject);
+            }
         }
 
         private Vector3 CalculateCenter()

@@ -72,6 +72,19 @@ namespace TileSystem
             return (Vector3Int)GetCoordinateFromWorldPosition(cell.transform.position);
         }
 
+        public List<TerrainCell> GetStartCells(AcktorList acktor) 
+        {
+            List<TerrainCell> cells = new();
+            foreach (KeyValuePair<Vector2Int, TerrainCell> pair in _terrainTilemap)
+            {
+                if (pair.Value.startOwner == acktor) 
+                {
+                    cells.Add(pair.Value);
+                }
+            }
+            return cells;
+        }
+
         private void InitializeTerrainMap()
         {
             _terrainTilemap = new();

@@ -41,14 +41,25 @@ namespace TileSystem
         }
         public GameAcktor owner
         {
-            get => _owner;
+            get 
+            {
+                if(_owner == null) 
+                {
+                    _owner = ServiceLocator.Get<GameHost>().GetAcktorByEnum(startOwner);
+                }
+                return _owner;
+            }
             set 
             {
-                _owner = value;
-                DestroyNest();
-                if(value != null)
-                    EventBus.RaiseEvent<ICellChangeOwnerHandler>(it => it.ChangeOwner(value, this));
-                OnOwnerChenge?.Invoke(owner, this);
+                if(_owner != value) 
+                {
+                    _owner = value;
+                    DestroyNest();
+                    building.ChangeCondition(new RegularSpawnCondition());
+                    if (value != null)
+                        EventBus.RaiseEvent<ICellChangeOwnerHandler>(it => it.ChangeOwner(value, this));
+                    OnOwnerChenge?.Invoke(owner, this);
+                }
             }
         }
         public int unitNumber

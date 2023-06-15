@@ -20,13 +20,13 @@ public abstract class GameAcktor : ICellChangeOwnerHandler
         this.acktorName = acktorName;
         this.unit = new(this);
         _terrainTilemap = GameObject.FindObjectOfType<TerrainTilemap>();
+        _myCells = _terrainTilemap.GetStartCells(acktorName);
         EventBus.Subscribe(this);
     }
     ~GameAcktor()
     {
         EventBus.Unsubscribe(this);
     }
-
 
     public abstract void OfferToBuildNest(Region region);
 

@@ -26,7 +26,7 @@ namespace BattleSystem
 
         private float CalculateUnitSpawnTime()
         {
-            return _unit.spawnSpeed * BattleConstants.DEFAULT_TIME_TO_NEST_SPAWN;
+            return _unit.spawnSpeed * BattleConstants.DEFAULT_TIME_TO_SPAWN;
         }
     }
 }
