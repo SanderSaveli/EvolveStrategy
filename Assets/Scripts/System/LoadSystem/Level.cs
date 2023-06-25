@@ -8,15 +8,19 @@ public class Level : MonoBehaviour, IPointerClickHandler
     private bool _locked;
     private void Start()
     {
-        if(!PlayerPrefs.HasKey("Level" + (_levelNumber-1))) 
+        if(!PlayerPrefs.HasKey("Level"))
         {
-            _locked = true;
-            lockBar.gameObject.SetActive(true);
+            PlayerPrefs.SetInt("Level", 0);
         }
-        else 
+        if(PlayerPrefs.GetInt("Level") >= _levelNumber - 1) 
         {
             _locked = false;
             lockBar.gameObject.SetActive(false);
+        }
+        else 
+        {
+            _locked = true;
+            lockBar.gameObject.SetActive(true);
         }
     }
     public void OnPointerClick(PointerEventData eventData)

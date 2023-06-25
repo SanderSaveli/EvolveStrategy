@@ -9,7 +9,7 @@ public class CardShop : MonoBehaviour
 {
     private List<CardData> _avalibleForSell = new();
 
-    private List<CardData> _currentCards;
+    private List<CardData> _currentCards = new();
 
     private Bank bank;
     private CardShopView view;

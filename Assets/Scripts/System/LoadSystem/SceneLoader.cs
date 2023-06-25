@@ -22,7 +22,7 @@ public class SceneLoader : DontDestroyOnLoadSingletone<SceneLoader>
     public void LoadLevelMenu()
     {
         menuLoadData = new MenuLoadData();
-        SceneManager.LoadScene("LevelMenu");
+        SceneManager.LoadScene("LevelsList");
     }
 
     public void LoadMainMenu()

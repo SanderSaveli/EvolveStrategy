@@ -70,7 +70,7 @@ public class GameHost : IService, IAcktorDiedHandler, IGameEndHandler
 
     public void PlayerWin()
     {
-        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
+        PlayerPrefs.SetInt("Level", SceneLoader.instance.gameLoadData.levelNumber);
     }
 
     public void PlayerLose()

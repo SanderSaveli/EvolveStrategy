@@ -29,7 +29,7 @@ namespace CardSystem
         {
             for(int i =0; i < cardsData.Count; i++) 
             { 
-                if(_activeSlots.Count< i) 
+                if(_activeSlots.Count - 1> i) 
                 {
                     RefillExistingCard(i, cardsData[i]);
                 }

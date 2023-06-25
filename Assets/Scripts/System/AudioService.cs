@@ -85,6 +85,7 @@ public class AudioService : IService,
     {
         _audioSource.clip = mainTheme;
         _audioSource.loop = true;
+        _audioSource.volume = 0.8f;
         _audioSource.Play();
     }
 }
